@@ -1,0 +1,128 @@
+// --------------------------------------------------------------------
+// Relational
+var SchedModel = Backbone.Model.extend({
+    idAttribute: 'id',
+    url: function () {
+        if (this.isNew()) {
+             return BASE_URL + 'api/schedule'; 
+        } else {
+            return BASE_URL + 'api/schedule/id/' + this.get('id'); 
+        }
+    },  
+    defaults: {
+        vessel_id         : 0,
+        vessel_name       : '',
+        j_date1           : '0000-00-00',
+        r_date1           : '0000-00-00',
+        j_date            : '0000-00-00',
+        r_date            : '0000-00-00',
+        fullname          : '',
+        remarks           : '',
+        joining_port      : '',
+        airport           : '',
+        agent             : '',
+        status_id         : 0,
+        principal         : '',
+        control_nos       : 0,
+        terminal          : 0,
+        arrival_time      : 0
+
+    }
+});
+
+var SchedCollection = Backbone.Collection.extend({    
+    url: function () {
+        return BASE_URL + 'api/schedule/id/' + this.id;
+    },
+    id: 0,
+    model: SchedModel
+}); 
+
+var SchedMasterView = Backbone.View.extend({
+    el: $("#schedule-module"),  
+    events: {
+        "click #sched_save-btn": "saveAbout",
+        "focus .jrdate": "selectdate",
+        'change input[type="checkbox"]': 'change'
+    },
+    change: function (e) {
+        change = {};
+
+        if(e.target.type == 'checkbox'){
+            if($(e.target).is(':checked')) {
+                e.target.value = 1;
+            } else {
+                e.target.value = 0;
+            }
+        }
+    },
+    saveAbout: function (e) {
+
+        var that = this;
+        var d = Array;
+
+        $.map($('.inoptsinfo input[type!="checkbox"], .inoptsinfo select, .inoptsinfo textarea').serializeArray(), function(n, i) {
+            d[n['name']] = n['value'];
+        });
+
+        d['is_approve'] = ($('.in_is_approve').is(':checked'))? 1 : 0;
+        d['advised_agent'] = ($('.in_advised_agent').is(':checked'))? 1 : 0;
+        d['final_flight'] = ($('.in_final_flight').is(':checked'))? 1 : 0;
+        d['final_dispatch'] = ($('.in_final_dispatch').is(':checked'))? 1 : 0;
+
+        options = new SchedModel();
+
+        if(this.collection) options.set('id', this.collection.id);
+
+        options.save(d, {
+            success: function (model, response) {
+                if(response['type'] == 'post'){
+                    $("#sched_save-btn").text('wait...page redirecting');
+                    $("#sched_save-btn").attr('disabled', true);
+                    alert = new AlertView({type: 'success', message: 'New record succesfully save.'});
+                } else {
+                    alert = new AlertView({type: 'success', message: 'Record succesfully updated.'});
+                }
+                
+                alert.render();              
+                
+                if(response['type'] === 'post' ){
+                    $.ajax({
+                        url: BASE_URL + 'schedule-redirect/' + response['control_nos'],
+                        dataType: 'html',
+                        success: function(url) {
+                            window.location = BASE_URL + url;
+                        }
+                    }); 
+                }
+                
+            },
+            error: function (model, response) {
+                alert = new AlertView({type: 'error', message: response});
+                alert.render();
+            }  
+        });
+    },
+    selectdate: function() {
+        $('.jrdate').datepicker({
+            yearRange: "-80y:+10y",
+            changeMonth: true,
+            changeYear: true,
+            showAnim: "clip" 
+        });
+    }
+});
+
+var AlertView = Backbone.View.extend({
+    el: $('#alert-div'),    
+    template: $('#alertTemplate').html(),
+    render: function () {
+        var tmpl = _.template(this.template);
+        var p = Array;
+        p['type'] = this.options.type;
+        p['message'] = this.options.message;
+        this.$el.html(tmpl(p));
+
+        return this;
+    }
+});

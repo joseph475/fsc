@@ -1,0 +1,348 @@
+<div class="accordion-group row-section">
+	
+	<?php if($crew_id): ?><a class="accordion-toggle" data-toggle="collapse" data-parent="#registration-module" href="#works-info"><?php endif; ?>
+		<div class="row-title">EMPLOYMENT RECORD</div> 
+	<?php if($crew_id): ?></a><?php endif; ?>
+
+	<div id="works-info" class="accordion-body collapse">
+		<div class="row-details">            
+            <div id="myTabContent" class="tab-content">                    
+                <div class="pull-right" id="workpagination"></div> 
+                <?php if(is_allowed(getclass($clssnme, FALSE, 2))): ?>
+                <a id="work_add-btn" class="btn" data-toggle="modal">
+                    <i class="icon-plus"></i> Add
+                </a> 
+                <?php endif; ?>
+
+                <div class="clearfix" style="margin-bottom: 20px;"></div>
+
+                <div id="alert4-div"></div> 
+                
+                <table class="responsive-table" id="options-table-works">
+                    <thead>
+						<tr>
+							<th>Company</th>
+							<th>Vessel</th>
+							<th width="7%">Rank</th> 
+							<th width="5%">GRT</th>  
+							<th width="5%">Kind</th>
+							<th width="7%">Engine</th>
+							<th>Trade</th>                             
+							<th width="7%">Embarked</th>
+							<th width="7%">Disembarked</th>
+							<th>Remarks</th>
+							<th width="3%">Actions</th>
+						</tr>
+                    </thead>
+                    <tbody></tbody>                            
+                </table>
+            </div>
+        </div>
+    
+    <!-- backbonejs view template -->
+    <script id="works-list-item" type="text/template">          
+        <td><%= (company)? company : '' %>&nbsp;</td> 
+        <td><%= (vessel)? vessel : '' %>&nbsp;</td>
+        <td><%= (rank)? rank : '' %>&nbsp;</td>
+        <td><%= (grt)? grt : '' %>&nbsp;</td>
+        <td><%= (type)? type : '' %>&nbsp;</td>
+        <td><%= (engine)? engine : '' %>&nbsp;</td>
+        <td><%= (trade)? trade : '' %>&nbsp;</td>
+        <td><center><%= (embarked)? embarked : '' %>&nbsp;</center></td>
+        <td><center><%= (disembarked)? disembarked : '' %>&nbsp;</center></td>
+        <td><%= (remarks)? remarks : '' %>&nbsp;</td>
+        <td><center>
+            <div class="btn-group">
+            	<?php if(is_allowed(getclass($clssnme, FALSE, 3))): ?>
+                <a class="record-edit" rel="tooltip" title="Edit" 
+                    href="javascript:void(0);" data-toggle="modal">
+                    <i class="icon-edit"></i>
+                </a>
+                <?php endif; ?>
+
+                <?php if(is_allowed(getclass($clssnme, FALSE, 4))): ?>
+                <a class="record-delete" rel="tooltip" title="Remove" 
+                    href="javascript:void(0);" data-toggle="modal">
+                    <i class="icon-remove"></i>
+                </a>    
+                <?php endif; ?>         
+            </div>
+            </center>
+        </td>
+    </script>
+
+    <script id="works-add-template" type="text/template">
+
+	    <div class="control-group inopts">
+	        <label class="control-label" for="inputcompany">Company :</label>
+	        <div class="controls">
+	            <input type="text" name="company" value="" id="inputcompany" />
+	            <input id="inputcrew_id" type="hidden" name="crew_id" value="<?php echo $crew_id; ?>" />
+	        </div>
+	    </div>
+
+	    <div class="control-group inopts">
+	        <label class="control-label" for="inputvessel">Vessel :</label>
+	        <div class="controls">
+	            <input type="text" name="vessel" value="" id="inputvessel" />
+	        </div>
+	    </div>
+
+	    <div class="control-group inopts">
+	        <label class="control-label" for="inputrank">Rank :</label>
+	        <div class="controls">
+	            <select name="rank">
+					<?php 
+					if($positions){
+						foreach ($positions as $r_value){ 
+							echo "<option value='{$r_value->code}' >{$r_value->position}</option>";
+						} 
+					}
+					?>
+				</select>
+	        </div>
+	    </div>
+	    <div class="control-group inopts">
+            <label class="control-label" for="inputengine">Engine :</label>
+            <div class="controls">
+            	<input type="text" name="engine" value="" id="inputengine" />
+            </div>
+        </div>
+        <div class="control-group inopts">
+            <label class="control-label" for="inputt_allowance">Type :</label>
+            <div class="controls">
+                <select name="type">
+                	<?php 
+					if($types){
+						$vessel_type = '';
+						foreach ($types as $t_value){ 
+							echo "<option value='{$t_value->title}' >{$t_value->title}</option>";
+						} 
+					} else {
+						echo "<option value='0'>&nbsp;</option>";
+					}
+					?>
+				</select>
+             </div>
+        </div>
+
+	    <div class="span-extended2">
+	        <div class="control-group inopts">
+	            <label class="control-label" for="inputgrt">GRT :</label>
+	            <div class="controls">
+	                <input type="text" name="grt" value="" style="width: 80px;" id="inputgrt" />
+	            </div>
+	        </div>
+	        <div class="control-group inopts">
+	            <label class="control-label" for="inputembarked">Embarked :</label>
+	            <div class="controls">
+	                <input type="text" name="embarked" style="width: 80px;" class="wdate" placeholder="mm/dd/yyyy" value="" id="inputembarked"  />
+	            </div>
+	        </div>
+	    </div>
+
+	    <div class="span-extended2">
+	        <div class="control-group inopts">
+	            <label class="control-label" for="inputtrade">Trade :</label>
+	            <div class="controls">
+	                <input type="text" name="trade" value="" style="width: 80px" id="inputtrade" />
+	            </div>
+	        </div>
+	        <div class="control-group inopts">
+	            <label class="control-label" for="inputdisembarked">Disembarked :</label>
+	            <div class="controls">
+	                <input type="text" name="disembarked" style="width: 80px;" class="wdate" placeholder="mm/dd/yyyy" value="" id="inputdisembarked" />
+	            </div>
+	        </div>
+	    </div>
+
+	    <div class="control-group inopts">
+	        <label class="control-label" for="inputremarks">Remarks :</label>
+	        <div class="controls">
+	            <input type="text" name="remarks" value="" id="inputremarks" />
+	        </div>
+	    </div>
+	</script>
+
+	<script id="works-edit-template" type="text/template">
+	    <div class="control-group ">
+	        <label class="control-label" for="inputcompany">Company :</label>
+	        <div class="controls">
+	            <input type="text" name="company" class="ab" value="<%= (company)? company : '' %>" id="inputcompany" />
+	            <input id="inputcrew_id" type="hidden" name="crew_id" value="<?php echo isset($crew_id)? $crew_id : ''; ?>" />
+	        </div>
+	    </div>
+
+	    <div class="control-group ">
+	        <label class="control-label" for="inputvessel">Vessel :</label>
+	        <div class="controls">
+	            <input type="text" name="vessel" class="ab" value="<%= (vessel)? vessel : '' %>" id="inputvessel" />
+	        </div>
+	    </div>
+
+	    <div class="control-group ">
+	        <label class="control-label" for="inputrank">Rank :</label>
+	        <div class="controls">
+	            <select name="rank" class="ab">
+				<?php 
+				if($positions){
+		            foreach ($positions as $r_value) {
+		                echo "<option value='{$r_value->code}' ";
+		            ?>
+		            <%= (rank == "<?php echo $r_value->code ?>")? 'selected="selected"' : '' %>
+		            <?php
+		                echo ">{$r_value->position}</option>";
+		            } 
+		        }
+	            ?>
+				</select>
+	        </div>
+	    </div>
+
+	    <div class="control-group ">
+            <label class="control-label" for="inputengine">Engine :</label>
+            <div class="controls">
+            	<input type="text" name="engine" class="ab" value="<%= (engine)? engine : '' %>" id="inputengine" />
+            </div>
+        </div>
+
+        <div class="control-group ">
+            <label class="control-label" for="Type">Type :</label>
+            <div class="controls">
+                <select name="type" class="ab">
+                	<option value=''>&nbsp;</option>
+                	<?php 
+					if($types){
+						$vessel_type = '';
+						foreach ($types as $t_value){ 
+							echo "<option value='{$t_value->title}' ";
+					?>
+					<%= (type == "<?php echo $t_value->title; ?>")? 'selected="selected"' : '' %>
+					<?php
+							echo ">{$t_value->title}</option>";
+						} 
+					} else {
+						echo "<option value='0'>&nbsp;</option>";
+					}
+					?>
+				</select>
+             </div>
+        </div>
+
+	    <div class="span-extended2">
+	        <div class="control-group ">
+	            <label class="control-label" for="inputgrt">GRT :</label>
+	            <div class="controls">
+	                <input type="text" name="grt" class="ab" value="<%= (grt)? grt : '' %>" style="width: 80px;" id="inputgrt" />
+	            </div>
+	        </div>
+	        <div class="control-group ">
+	            <label class="control-label" for="inputembarked">Embarked :</label>
+	            <div class="controls">
+	                <input type="text" name="embarked" style="width: 80px;" class="ab wdate" placeholder="mm/dd/yyyy" value="<%= (embarked)? embarked : '' %>" id="inputembarked" />
+	            </div>
+	        </div>
+	    </div>
+
+	    <div class="span-extended2">
+	        <div class="control-group ">
+	            <label class="control-label" for="inputtrade">Trade :</label>
+	            <div class="controls">
+	                <input type="text" name="trade" class="ab" value="<%= (trade)? trade : '' %>" style="width: 80px" id="inputtrade" />
+	            </div>
+	        </div>
+	        <div class="control-group ">
+	            <label class="control-label" for="inputdisembarked">Disembarked :</label>
+	            <div class="controls">
+	                <input type="text" name="disembarked" style="width: 80px;" class="ab wdate" placeholder="mm/dd/yyyy" value="<%= (disembarked)? disembarked : '' %>" id="inputdisembarked" />
+	            </div>
+	        </div>
+	    </div>
+
+	    <div class="control-group ">
+	        <label class="control-label" for="inputremarks">Remarks :</label>
+	        <div class="controls">
+	            <input type="text"name="remarks" class="ab" value="<%= (remarks)? remarks : '' %>" id="inputremarks" />
+	        </div>
+	    </div>
+	</script>
+
+    <!-- backbonejs view template -->
+    <?php $this->load->view('template/pagination');?>
+
+    <!-- Script for autoloading on mobile device -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var worksItems = new WorksCollection();
+            <?php if($crew_id): ?>
+	            worksItems.crew_id = <?php echo $crew_id; ?>;
+	        <?php endif; ?>
+            var worksmasterView = new WorksMasterView({collection: worksItems});
+            var workspagination = new WorksPaginatedView({collection: worksItems});           
+        });
+    </script>
+
+    <script type="text/template" id="alert4Template">
+        <div class="alert alert-<%= type %>">
+            <button class="close" data-dismiss="alert" type="button">×</button>
+            <%= message %>
+        </div>
+    </script>
+
+	<!-- Modal Add -->          
+	<div class="modal hide fade" id="addWork">
+	    <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">×</button>
+	        <h3>Add Employment <small>&raquo; Setup</small></h3>
+	    </div>
+	    <div class="modal-body">
+	        <form class="form-horizontal">
+	            <div id="container-works-add"></div>
+	        </form>
+	    </div>
+	    <div class="modal-footer">
+	        <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+	        <a href="javascript:void(0);" class="btn btn-success" id="options-submit">Submit</a>
+	    </div>
+	</div>
+	<!-- End Add -->
+
+    <!-- Modal Edit -->          
+	<div class="modal hide fade" id="editWork">
+	    <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">×</button>
+	        <h3>Edit Employment <small>&raquo; Setup</small></h3>
+	    </div>
+	    <div class="modal-body">
+	        <form class="form-horizontal">
+	            <div id="container-works-edit"></div>
+	        </form>
+	    </div>
+	    <div class="modal-footer">
+	        <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+	        <a href="javascript:void(0);" class="btn btn-primary" id="options-update">Submit Changes</a>
+	    </div>
+	</div>
+	<!-- End Edit -->
+
+     <!-- Modal Delete --> 
+    <div class="modal hide fade" id="deleteWork">
+        <div class="modal-header">
+          <a href="#" data-dismiss="modal" class="close">&times;</a>
+          <h3>Delete Post</h3>
+        </div>
+        <div class="modal-body">
+          <p>You are about to delete this record.</p>
+          <p>Do you want to proceed?</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn btn-danger">Yes</a>
+          <a href="#" data-dismiss="modal" class="btn secondary">No</a>
+        </div>
+    </div>
+    <!-- Modal Delete --> 
+
+	</div>
+</div>
+

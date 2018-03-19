@@ -1,0 +1,1 @@
+var Options=Backbone.Model.extend({idAttribute:"id",url:function(){if(this.isNew()){return BASE_URL+"api/replacement_plan"}else{return BASE_URL+"api/replacement_plan/id/"+this.get("id")}},defaults:{visa:"",jdate:"",joining_date:"0000-00-00",repat_date:"0000-00-00",embark:"",disembark:"",vessel_name:""}});var TypeAheadCollection=Backbone.Collection.extend({model:Options});

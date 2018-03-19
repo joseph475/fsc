@@ -1,0 +1,1 @@
+var counter=0;var OptionsView=Backbone.View.extend({tagName:"tr",template:$("#emp-list-item").html(),render:function(){counter=counter+1;this.model.set("counter",counter);var a=_.template(this.template);this.$el.html(a(this.model.toJSON()));return this}});

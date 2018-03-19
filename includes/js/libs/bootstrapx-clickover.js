@@ -1,0 +1,13 @@
+!function($){"use strict"
+var Clickover=function(element,options){this.cinit('clickover',element,options);}
+Clickover.prototype=$.extend({},$.fn.popover.Constructor.prototype,{constructor:Clickover,cinit:function(type,element,options){this.attr={};this.attr.me=((Math.random()*10)+"").replace(/\D/g,'');this.attr.click_event_ns="click."+this.attr.me;if(!options)options={};options.trigger='manual';this.init(type,element,options);this.$element.on('click',this.options.selector,$.proxy(this.clickery,this));},toggle:function(e){var self=(e)?$(e.currentTarget)[this.type](this._options).data(this.type):this
+self.tip().hasClass('in')?self.hide():self.show()},clickery:function(e){if(e){e.preventDefault();e.stopPropagation();}
+this.options.width&&this.tip().find('.popover-inner').width(this.options.width);this.options.height&&this.tip().find('.popover-inner').height(this.options.height);this.options.tip_id&&this.tip().attr('id',this.options.tip_id);this.options.class_name&&this.tip().addClass(this.options.class_name);this.toggle();if(this.isShown()){var that=this;this.options.global_close&&$('body').on(this.attr.click_event_ns,function(e){if(!that.tip().has(e.target).length){that.clickery();}});!this.options.allow_multiple&&$('[data-clickover-open=1]').each(function(){$(this).data('clickover')&&$(this).data('clickover').clickery();});this.$element.attr('data-clickover-open',1);this.tip().on('click','[data-dismiss="clickover"]',$.proxy(this.clickery,this));if(this.options.auto_close&&this.options.auto_close>0){this.attr.tid=setTimeout($.proxy(this.clickery,this),this.options.auto_close);}
+typeof this.options.onShown=='function'&&this.options.onShown.call(this);this.$element.trigger('shown');}
+else{this.$element.removeAttr('data-clickover-open');$('body').off(this.attr.click_event_ns);if(typeof this.attr.tid=="number"){clearTimeout(this.attr.tid);delete this.attr.tid;}
+typeof this.options.onHidden=='function'&&this.options.onHidden.call(this);this.$element.trigger('hidden');}},isShown:function(){return this.tip().hasClass('in');},debughide:function(){var dt=new Date().toString();console.log(dt+": clickover hide");this.hide();}})
+$.fn.clickover=function(option){return this.each(function(){var $this=$(this),data=$this.data('clickover'),options=typeof option=='object'&&option
+if(!data)$this.data('clickover',(data=new Clickover(this,options)))
+if(typeof option=='string')data[option]()})}
+$.fn.clickover.Constructor=Clickover
+$.fn.clickover.defaults=$.extend({},$.fn.popover.defaults,{trigger:'manual',auto_close:0,global_close:1,onShown:null,onHidden:null,width:null,height:null,tip_id:null,class_name:'clickover',allow_multiple:0})}(window.jQuery);

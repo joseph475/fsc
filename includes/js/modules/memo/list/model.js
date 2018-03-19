@@ -1,0 +1,1 @@
+var Options=Backbone.Model.extend({idAttribute:"id",url:function(){if(this.isNew()){return BASE_URL+"api/memo"}else{return BASE_URL+"api/memo/id/"+this.get("id")}},defaults:{title:"",type:"",published:0,type:"",dc:""}});var TypeAheadCollection=Backbone.Collection.extend({model:Options});

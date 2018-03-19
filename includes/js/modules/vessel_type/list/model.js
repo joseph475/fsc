@@ -1,0 +1,1 @@
+var Options=Backbone.Model.extend({idAttribute:"id",url:function(){if(this.isNew()){return BASE_URL+"api/vessel_type"}else{return BASE_URL+"api/vessel_type/id/"+this.get("id")}},defaults:{code:""}});var TypeAheadCollection=Backbone.Collection.extend({model:Options});

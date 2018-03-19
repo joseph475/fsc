@@ -1,0 +1,111 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ *
+ *  @author     Jomel P. Dicen
+ *  @version    1.0.0
+ *  @date       2013-01-21
+ */
+
+class crew_checklist_model extends MY_Model
+{
+    private $_table_name = 'crew';
+    private $_primary_key = 'crew_id';  
+
+    protected $_allowed_filters = array(
+        'id', 'crew_id'
+    );
+    
+    protected $_search_fields = array( 
+        'jd_document.document'
+    );
+
+    // --------------------------------------------------------------------
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        // Set the values for MY_Model::_table and MY_Model::_primary .
+        $this->set_table_name($this->_table_name);
+        $this->set_primary_key($this->_primary_key);
+    }
+
+    public function _set_join()
+    {
+        $this->db->select('
+                          jd_crew.crew_id           AS crew_id,
+                          CONCAT(jd_crew.lastname,", ",jd_crew.firstname," ",jd_crew.middlename) AS fullname,
+                          jd_crew.position_id       AS position_id,
+                          jd_position.position      AS position,
+                          jd_position.code          AS code,
+                          jd_crew_docs.docs_id      AS docs_id,
+                          jd_document.document      AS document,
+                          jd_crew_docs.docs_nos     AS docs_nos,
+                          DATE_FORMAT(jd_crew_docs.date_issued,"%m/%d/%y") AS date_issued,
+                          DATE_FORMAT(jd_crew_docs.date_expired,"%m/%d/%y") AS date_expired,
+                          jd_checklist.sort_order   AS sort_order,
+                          jd_checklist.sub_order    AS sub_order,
+                          jd_checklist.officer_deck AS officer_deck,
+                          jd_checklist.officer_engr AS officer_engr,
+                          jd_checklist.officer_stwd AS officer_stwd,
+                          jd_checklist.rating_deck  AS rating_deck,
+                          jd_checklist.rating_engr  AS rating_engr,
+                          jd_checklist.rating_stwd  AS rating_stwd,
+                          (SELECT jd_vessels.vessel_name AS vessel_name FROM jd_onboard 
+                          INNER JOIN jd_vessels ON jd_vessels.id = jd_onboard.vessel_id
+                          WHERE jd_onboard.crew_id = jd_crew.crew_id AND jd_onboard.isdone = 0
+                           ORDER BY jd_onboard.end_date DESC LIMIT 1) AS vessel_name
+                            ',
+            FALSE
+        );
+
+        $this->db->join('position', 'position.id = crew.position_id', 'inner');
+        $this->db->join('crew_docs', 'crew_docs.crew_id = crew.crew_id', 'left');  
+        $this->db->join('document', 'document.id = crew_docs.docs_id', 'left');  
+        $this->db->join('checklist', 'checklist.docs_id = crew_docs.docs_id', 'left');    
+    }
+
+    /**
+    *
+    *  Fetch all rows.
+    *  @return obj
+    */
+    function fetch_all($limit = null, $offset = null, $sort = null, $order = 'desc')
+    {
+        $this->_set_join();
+
+        $this->db->where('crew_docs.published', 1);
+        $this->db->where('checklist.sort_order !=', 0);
+        $this->db->where('(
+                        CASE jd_position.department_id
+                        WHEN 1 THEN
+                            CASE jd_position.division_id
+                            WHEN 1 THEN             /* OFFFICER */
+                                jd_document.isengine_off = 1
+                            WHEN 2 THEN             /* RATINGS */
+                                jd_document.isengine_rat = 1
+                            END 
+                        WHEN 2 THEN
+                           CASE jd_position.division_id
+                            WHEN 1 THEN             /* OFFFICER */
+                                jd_document.isdeck_off = 1
+                            WHEN 2 THEN             /* RATINGS */
+                                jd_document.isdeck_rat = 1
+                            END
+                        WHEN 3 THEN
+                           jd_document.iscatering = 1
+                        END)
+                    ');
+
+        if (is_null($sort)) {
+            $this->db->order_by($this->_table_name . '.' . $this->_primary_key . ' ' . $order);
+        } else {
+            $this->db->order_by($sort . ' ' . $order);
+        }   
+
+        $this->db->order_by('checklist.sub_order ');
+
+        return $this->db->get($this->_table_name, $limit, $offset);
+    }
+
+}

@@ -1,0 +1,1 @@
+var Options=Backbone.Model.extend({idAttribute:"id",url:function(){if(this.isNew()){return BASE_URL+"api/division"}else{return BASE_URL+"api/division/id/"+this.get("id")}},defaults:{option_code:""}});var TypeAheadCollection=Backbone.Collection.extend({model:Options});

@@ -1,0 +1,72 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2017-10-01 01:20:34 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 01:20:34 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 01:20:35 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 01:29:43 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 01:29:44 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 01:30:21 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 01:30:22 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 01:53:07 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 01:53:07 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 02:28:16 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 02:28:16 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 02:28:16 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 02:28:16 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 02:53:40 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 02:53:40 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 03:35:20 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 03:35:20 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 03:49:26 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 03:49:26 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 06:11:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 06:11:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 07:47:53 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 07:47:54 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 08:23:46 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 08:23:46 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 08:23:47 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 08:23:47 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 09:50:13 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 09:50:14 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 09:50:15 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 09:50:16 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 10:43:31 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 10:43:32 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 10:43:42 --> 404 Page Not Found --> uat
+ERROR - 2017-10-01 10:43:57 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 10:43:58 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 11:25:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 11:25:31 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 12:12:14 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 12:12:14 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 13:16:59 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 13:17:03 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 13:51:24 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 13:51:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 14:23:23 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 14:23:23 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 14:23:23 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 16:19:32 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 16:19:32 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 17:42:18 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 17:42:18 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 19:52:42 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 19:52:42 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 19:53:11 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 20:54:48 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 20:54:48 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 20:54:48 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 20:54:48 --> Severity: Notice  --> mysql_pconnect(): send of 5 bytes failed with errno=10053 An established connection was aborted by the software in your host machine.
+ C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 21:33:24 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 21:33:25 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91
+ERROR - 2017-10-01 21:51:50 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\fsc\system\database\drivers\mysql\mysql_driver.php 91

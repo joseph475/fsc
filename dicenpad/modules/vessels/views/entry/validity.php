@@ -1,0 +1,234 @@
+<div class="accordion-group row-section">
+	
+	<?php if(isset($about)): ?><a class="accordion-toggle" data-toggle="collapse" data-parent="#registration-module" href="#validity-info"><?php endif; ?>
+		<div class="row-title">SHIP'S Validity Period</div> 
+	<?php if(isset($about)): ?></a><?php endif; ?>
+
+	<div id="validity-info" class="accordion-body collapse">
+		<div class="row-details">            
+            <div id="myTabContent" class="tab-content">                    
+                <div class="pull-right" id="validitypagination"></div> 
+                <?php if(is_allowed(getclass($clssnme, FALSE, 2))): ?>
+                <a id="validity_add-btn" class="btn" data-toggle="modal">
+                    <i class="icon-plus"></i> Add
+                </a> 
+                <?php endif; ?>
+
+                <div class="clearfix" style="margin-bottom: 20px;"></div>
+
+                <div id="alertvalidity-div"></div> 
+                
+                <table class="responsive-table" id="options-table-validity">
+                    <thead>
+                      <tr>
+                        <th>Year</th>
+	                    <th>Validity From</th>    
+                        <th>Validity To</th>  
+                        <th>CBA</th>        
+                        <th width="3%">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>                            
+                </table>
+            </div>
+        </div>
+    
+    <!-- backbonejs view template -->
+    <script id="validity-list-item" type="text/template">          
+        <td><%= (validity_year)? validity_year : '' %>&nbsp;</td> 
+        <td><%= (validity_from)? validity_from : '' %>&nbsp;</td>
+        <td><%= (validity_to)? validity_to : '' %>&nbsp;</td>
+        <td><%= (cba)? cba : '' %>&nbsp;</td>
+        <td><center>
+            <div class="btn-group">
+                <?php if(is_allowed(getclass($clssnme, FALSE, 3))): ?>
+                <a class="record-edit" rel="tooltip" title="Edit" 
+                    href="javascript:void(0);" data-toggle="modal">
+                    <i class="icon-edit"></i>
+                </a>
+                <?php endif; ?>
+
+                <?php if(is_allowed(getclass($clssnme, FALSE, 4))): ?>
+                <a class="record-delete" rel="tooltip" title="Remove" 
+                    href="javascript:void(0);" data-toggle="modal">
+                    <i class="icon-remove"></i>
+                </a>  
+                <?php endif; ?>           
+            </div>
+            </center>
+        </td>
+    </script>
+
+    <script id="option-add-validity" type="text/template">
+        <div class="inopts">
+            <div class="control-group">
+                <label class="control-label" for="inputvaliditys">validity:</label>
+                <div class="controls">
+                    <select name="validity_year" id="validity_year">
+                        <?php 
+                            for ($x = date('Y'); $x <= date('Y', strtotime('+4 years')); $x++) {
+                                echo "<option value='{$x}' >{$x}</option>";
+                            }
+                        ?>
+                    </select>
+                    <input id="inputvessel_id" type="hidden" name="vessel_id" value="<?php echo isset($id)? $id : ''; ?>" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputValidityFrom">Validity From:</label>
+                <div class="controls">
+                    <input type="text" class="ddate" placeholder="From" value="" name="validity_from"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputValidityTo">Validity To:</label>
+                <div class="controls">
+                    <input type="text" class="ddate" placeholder="To" value="" name="validity_to"/>
+                </div>
+            </div
+            <div class="control-group">
+                <label class="control-label" for="inputCBA">CBA:</label>
+                <div class="controls">
+                    <select name="cba">
+                        <?php 
+                            $arrayName = array('IBF-JSU/AMOSUP IMMAJ', 'IBF-FKSU/AMOSUP KSA', 'JSU/AMOSUP ADVANCED CBA', 'NON CBA');
+                            foreach ($arrayName as $key) {
+                                echo "<option value='{$key}' " . (($key == _p($about, 'cba'))? 'selected="selected"' : '') . ">{$key}</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+	</script>
+
+	<script id="option-edit-validity" type="text/template">
+        <div class="inopts2">
+    	    <div class="control-group">
+                <label class="control-label" for="inputvaliditys">Validity:</label>
+                <div class="controls">
+                    <select name="validity_year" id="validity_year">
+                        <?php 
+                            for ($x = date('Y'); $x <= date('Y', strtotime('+4 years')); $x++) {
+                                echo "<option value='{$x}' ";
+                        ?>
+                        <%= (validity_year == "<?= $x ?>")? 'selected="selected"' : '' %>
+                        <?php
+                                echo ">{$x}</option>";
+                            }
+                        ?>
+                    </select>
+                    <input id="inputvessel_id" type="hidden" name="vessel_id" value="<?php echo isset($id)? $id : ''; ?>" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputValidityFrom">Validity From:</label>
+                <div class="controls">
+                    <input type="text" class="ddate" placeholder="From" value="<%= (validity_from)? validity_from : '' %>" name="validity_from"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputValidityTo">Validity To:</label>
+                <div class="controls">
+                    <input type="text" class="ddate" placeholder="To" value="<%= (validity_to)? validity_to : '' %>" name="validity_to"/>
+                </div>
+            </div
+            <div class="control-group">
+                <label class="control-label" for="inputCBA">CBA:</label>
+                <div class="controls">
+                    <select name="cba">
+                        <?php 
+                            $arrayName = array('IBF-JSU/AMOSUP IMMAJ', 'IBF-FKSU/AMOSUP KSA', 'JSU/AMOSUP ADVANCED CBA', 'NON CBA');
+                            foreach ($arrayName as $key) {
+                                echo "<option value='{$key}' ";
+                        ?>
+                        <%= (cba == "<?= $key ?>")? 'selected="selected"' : '' %>
+                        <?php
+                                echo ">{$key}</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+	</script>
+
+    <!-- backbonejs view template -->
+    <?php $this->load->view('template/pagination');?>
+
+    <!-- Script for autoloading on mobile device -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var paginatedvalidity = new validityCollection();
+            <?php if(isset($id)): ?>
+	            paginatedvalidity.vessel_id = <?php echo $id; ?>;
+	        <?php endif; ?>
+            var validitymasterView = new validityMasterView({collection: paginatedvalidity});
+            var validitypagination = new validityPaginatedView({collection: paginatedvalidity});           
+        });
+    </script>
+
+    <script type="text/template" id="alertvalidityTemplate">
+        <div class="alert alert-<%= type %>">
+            <button class="close" data-dismiss="alert" type="button">×</button>
+            <%= message %>
+        </div>
+    </script>
+
+	<!-- Modal Add -->          
+	<div class="modal hide fade" id="addvalidity">
+	    <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">×</button>
+	        <h3>Add Validity <small>&raquo; Setup</small></h3>
+	    </div>
+	    <div class="modal-body">
+	        <form class="form-horizontal">
+	            <div id="container-validity-add"></div>
+	        </form>
+	    </div>
+	    <div class="modal-footer">
+	        <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+	        <a href="javascript:void(0);" class="btn btn-success" id="options-submit">Submit</a>
+	    </div>
+	</div>
+	<!-- End Add -->
+
+	<!-- Modal Edit -->          
+	<div class="modal hide fade" id="editvalidity">
+	    <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">×</button>
+	        <h3>Edit Validity <small>&raquo; Setup</small></h3>
+	    </div>
+	    <div class="modal-body">
+	        <form class="form-horizontal">
+	            <div id="container-validity-edit"></div>
+	        </form>
+	    </div>
+	    <div class="modal-footer">
+	        <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+	        <a href="javascript:void(0);" class="btn btn-primary" id="options-update">Submit Changes</a>
+	    </div>
+	</div>
+	<!-- End Edit -->
+
+     <!-- Modal Delete --> 
+    <div class="modal hide fade" id="deletevalidity">
+        <div class="modal-header">
+          <a href="#" data-dismiss="modal" class="close">&times;</a>
+          <h3>Delete Post</h3>
+        </div>
+        <div class="modal-body">
+          <p>You are about to delete this record.</p>
+          <p>Do you want to proceed?</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn btn-danger">Yes</a>
+          <a href="#" data-dismiss="modal" class="btn secondary">No</a>
+        </div>
+    </div>
+    <!-- Modal Delete --> 
+
+	</div>
+</div>
+

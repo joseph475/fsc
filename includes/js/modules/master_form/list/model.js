@@ -1,0 +1,1 @@
+var Options=Backbone.Model.extend({idAttribute:"id",url:function(){if(this.isNew()){return BASE_URL+"api/master_form"}else{return BASE_URL+"api/master_form/id/"+this.get("id")}},defaults:{title:"",control_nos:"FSC-",published:"",remarks:""}});var TypeAheadCollection=Backbone.Collection.extend({model:Options});

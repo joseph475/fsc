@@ -1,0 +1,1 @@
+var Options=Backbone.Model.extend({idAttribute:"id",url:function(){if(this.isNew()){return BASE_URL+"api/signatory"}else{return BASE_URL+"api/signatory/id/"+this.get("id")}},defaults:{admin_position_id:"",position:"",form_id:"",published:0,salutation:"",propername:""}});var TypeAheadCollection=Backbone.Collection.extend({model:Options});
